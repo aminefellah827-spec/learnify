@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Learners - Develoopini</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root {
+--orange:#F97316; --orange-dark:#EA580C; --orange-light:#FB923C;
+--bg:#0C1220; --bg2:#111827; --bg3:#1A2332;
+--text:#F1F5F9; --text-dim:#94A3B8; --text-muted:#64748B;
+--border:rgba(249,115,22,0.15); --border-hover:rgba(249,115,22,0.4);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Poppins',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--orange-dark);border-radius:3px;}
+
+nav{
+position:fixed;top:0;width:100%;
+padding:18px 80px;
+display:flex;justify-content:space-between;align-items:center;
+background:rgba(12,18,32,0.95);
+backdrop-filter:blur(20px);
+z-index:1000;
+border-bottom:1px solid var(--border);
+}
+.logo{font-size:20px;font-weight:800;text-decoration:none;}
+.logo .l{color:var(--orange);}
+.logo .t{color:#fff;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{color:var(--text-dim);text-decoration:none;font-size:14px;font-weight:500;transition:color 0.3s;}
+.nav-links a:hover{color:var(--orange);}
+.nav-links a.active{color:var(--orange);}
+.nav-cta{
+background:linear-gradient(135deg,var(--orange-dark),var(--orange));
+color:white;padding:11px 26px;border-radius:50px;
+text-decoration:none;font-size:14px;font-weight:600;
+transition:all 0.3s;box-shadow:0 4px 20px rgba(249,115,22,0.3);
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(249,115,22,0.45);}
+
+.page-hero{
+min-height:55vh;display:flex;
+align-items:center;justify-content:center;
+text-align:center;padding:140px 20px 80px;
+position:relative;overflow:hidden;
+}
+.hero-bg{
+position:absolute;inset:0;
+background:
+radial-gradient(ellipse at 30% 50%,rgba(249,115,22,0.12) 0%,transparent 60%),
+radial-gradient(ellipse at 70% 30%,rgba(30,45,78,0.4) 0%,transparent 50%);
+}
+.grid-bg{
+position:absolute;inset:0;
+background-image:
+linear-gradient(rgba(249,115,22,0.04) 1px,transparent 1px),
+linear-gradient(90deg,rgba(249,115,22,0.04) 1px,transparent 1px);
+background-size:60px 60px;
+}
+.hero-content{position:relative;z-index:1;max-width:700px;}
+.tag{
+display:inline-flex;align-items:center;gap:8px;
+background:rgba(249,115,22,0.1);
+border:1px solid rgba(249,115,22,0.25);
+color:var(--orange);padding:7px 18px;border-radius:50px;
+font-size:12px;font-weight:600;
+text-transform:uppercase;letter-spacing:1.5px;margin-bottom:22px;
+}
+.sec-title{font-size:clamp(34px,5vw,56px);font-weight:800;letter-spacing:-1px;line-height:1.1;margin-bottom:18px;}
+.accent{color:var(--orange);}
+
+.btn-orange{
+background:linear-gradient(135deg,var(--orange-dark),var(--orange));
+color:white;padding:16px 38px;border-radius:50px;
+text-decoration:none;font-size:15px;font-weight:700;
+transition:all 0.3s;box-shadow:0 6px 25px rgba(249,115,22,0.4);
+display:inline-flex;align-items:center;gap:10px;
+}
+.btn-orange:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(249,115,22,0.55);}
+
+.btn-outline{
+background:transparent;color:white;
+padding:16px 38px;border-radius:50px;
+text-decoration:none;font-size:15px;font-weight:700;
+border:2px solid rgba(249,115,22,0.4);transition:all 0.3s;
+display:inline-flex;align-items:center;gap:10px;
+}
+.btn-outline:hover{border-color:var(--orange);background:rgba(249,115,22,0.08);transform:translateY(-3px);}
+
+.container{max-width:1100px;margin:0 auto;padding:0 40px;}
+.section{padding:90px 0;}
+
+.courses-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+gap:24px;margin-top:50px;
+}
+.course-card{
+background:var(--bg2);
+border:1px solid var(--border);
+border-radius:22px;overflow:hidden;
+transition:all 0.4s;
+}
+.course-card:hover{
+border-color:var(--border-hover);
+transform:translateY(-8px);
+box-shadow:0 20px 45px rgba(249,115,22,0.12);
+}
+.course-thumb{
+height:180px;display:flex;
+align-items:center;justify-content:center;
+font-size:64px;
+}
+.design{background:linear-gradient(135deg,rgba(249,115,22,0.15),rgba(234,88,12,0.1));}
+.dev{background:linear-gradient(135deg,rgba(30,45,78,0.5),rgba(42,63,111,0.3));}
+.marketing{background:linear-gradient(135deg,rgba(249,115,22,0.1),rgba(30,45,78,0.3));}
+.video{background:linear-gradient(135deg,rgba(234,88,12,0.12),rgba(249,115,22,0.08));}
+.ai{background:linear-gradient(135deg,rgba(30,45,78,0.6),rgba(42,63,111,0.4));}
+.ecom{background:linear-gradient(135deg,rgba(249,115,22,0.12),rgba(30,45,78,0.2));}
+
+.course-body{padding:28px;}
+.course-cat{
+display:inline-block;
+background:rgba(249,115,22,0.12);
+color:var(--orange);
+padding:4px 14px;border-radius:50px;
+font-size:11px;font-weight:600;
+text-transform:uppercase;letter-spacing:1px;
+margin-bottom:14px;
+}
+.course-title{font-size:18px;font-weight:700;margin-bottom:10px;}
+.course-desc{font-size:14px;color:var(--text-dim);line-height:1.6;margin-bottom:20px;}
+.course-meta{
+display:flex;justify-content:space-between;
+align-items:center;padding-top:16px;
+border-top:1px solid rgba(249,115,22,0.08);
+}
+.course-price{font-size:18px;font-weight:800;color:var(--orange);}
+.course-btn{
+background:linear-gradient(135deg,var(--orange-dark),var(--orange));
+color:white;padding:10px 22px;border-radius:50px;
+text-decoration:none;font-size:13px;font-weight:600;
+transition:all 0.3s;
+}
+.course-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(249,115,22,0.4);}
+
+.benefits-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:20px;margin-top:50px;
+}
+.benefit-card{
+background:var(--bg2);
+border:1px solid var(--border);
+border-radius:20px;padding:32px;
+transition:all 0.3s;position:relative;overflow:hidden;
+}
+.benefit-card::before{
+content:'';position:absolute;
+top:0;left:0;right:0;height:3px;
+background:linear-gradient(90deg,var(--orange-dark),var(--orange-light));
+transform:scaleX(0);transform-origin:left;transition:transform 0.4s;
+}
+.benefit-card:hover{border-color:var(--border-hover);transform:translateY(-6px);box-shadow:0 16px 35px rgba(249,115,22,0.1);}
+.benefit-card:hover::before{transform:scaleX(1);}
+.b-icon{font-size:36px;display:block;margin-bottom:16px;}
+.benefit-card h3{font-size:17px;font-weight:700;margin-bottom:10px;}
+.benefit-card p{font-size:14px;color:var(--text-dim);line-height:1.6;}
+
+.cta-box{
+max-width:650px;margin:0 auto;
+background:linear-gradient(135deg,var(--bg2),var(--bg3));
+border:1px solid rgba(249,115,22,0.25);
+border-radius:32px;padding:70px 50px;text-align:center;
+}
+.cta-box h2{font-size:clamp(28px,4vw,44px);font-weight:800;margin-bottom:18px;}
+.cta-box p{font-size:16px;color:var(--text-dim);line-height:1.8;margin-bottom:36px;}
+.cta-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;}
+
+footer{
+background:var(--bg2);
+border-top:1px solid var(--border);
+padding:40px 80px;
+display:flex;justify-content:space-between;
+align-items:center;flex-wrap:wrap;gap:20px;
+}
+.f-logo{font-size:18px;font-weight:800;}
+.f-logo .l{color:var(--orange);}
+.f-logo .t{color:white;}
+.f-copy{font-size:13px;color:var(--text-muted);}
+.f-links{display:flex;gap:24px;}
+.f-links a{color:var(--text-dim);text-decoration:none;font-size:13px;transition:color 0.3s;}
+.f-links a:hover{color:var(--orange);}
+
+.reveal{opacity:0;transform:translateY(50px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal.active{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+nav{padding:16px 24px;}
+.nav-links{display:none;}
+.container{padding:0 24px;}
+footer{padding:30px 24px;flex-direction:column;text-align:center;}
+.cta-box{padding:50px 28px;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../index.html" class="logo">
+    <span class="l">Learnify</span><span class="t">Tech</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="learners.html" class="active">For Learners</a></li>
+    <li><a href="instructors.html">For Instructors</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSJl2ibyn5rt079TjeF23-bgQoYKKX6WsAuaSF650Q5bacdA/viewform"
+     target="_blank" class="nav-cta">Register Now →</a>
+</nav>
+
+<div class="page-hero">
+  <div class="hero-bg"></div>
+  <div class="grid-bg"></div>
+  <div class="hero-content">
+    <div class="tag">🎓 For Learners</div>
+    <h1 class="sec-title">
+      Master skills that<br>
+      <span class="accent">open real doors</span>
+    </h1>
+    <p style="font-size:17px;color:var(--text-dim);margin:20px auto 40px;max-width:500px;line-height:1.8;">
+      Learn from Algeria's best instructors. Practical courses. Real results. Starting from 2000 DA.
+    </p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSJl2ibyn5rt079TjeF23-bgQoYKKX6WsAuaSF650Q5bacdA/viewform"
+       target="_blank" class="btn-orange">Register as Learner →</a>
+  </div>
+</div>
+
+<div class="section">
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="tag">📚 Available Courses</div>
+      <h2 class="sec-title">What will you <span class="accent">learn?</span></h2>
+      <p style="font-size:17px;color:var(--text-dim);max-width:560px;margin:0 auto;">
+        Our first courses are launching soon. Register now to be among the first to access them.
+      </p>
+    </div>
+    <div class="courses-grid">
+      <div class="course-card reveal">
+        <div class="course-thumb design">🎨</div>
+        <div class="course-body">
+          <div class="course-cat">Design</div>
+          <div class="course-title">Graphic Design Fundamentals</div>
+          <div class="course-desc">Learn the core principles of design typography color theory and create stunning visuals from day one.</div>
+          <div class="course-meta">
+            <div class="course-price">2,500 DA</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSJl2ibyn5rt079TjeF23-bgQoYKKX6WsAuaSF650Q5bacdA/viewform"
+               target="_blank" class="course-btn">Register →</a>
+          </div>
+        </div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-thumb dev">💻</div>
+        <div class="course-body">
+          <div class="course-cat">Development</div>
+          <div class="course-title">Web Development Bootcamp</div>
+          <div class="course-desc">Build real websites from scratch using HTML CSS and JavaScript. No prior experience needed.</div>
+          <div class="course-meta">
+            <div class="course-price">3,000 DA</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSJl2ibyn5rt079TjeF23-bgQoYKKX6WsAuaSF650Q5bacdA/viewform"
+               target="_blank" class="course-btn">Register →</a>
+          </div>
+        </div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-thumb marketing">📱</div>
+        <div class="course-body">
+          <div class="course-cat">Marketing</div>
+          <div class="course-title">Social Media Marketing</div>
+          <div class="course-desc">Learn how to grow pages create content that converts and run effective ad campaigns.</div>
+          <div class="course-meta">
+            <div class="course-price">2,000 DA</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSJl2ibyn5rt079TjeF23-bgQoYKKX6WsAuaSF650Q5bacdA/viewform"
+               target="_blank" class="course-btn">Register →</a>
+          </div>
+        </div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-thumb video">🎬</div>
+        <div class="course-body">
+          <div class="course-cat">Video Editing</div>
+          <div class="course-title">Video Editing Masterclass</div>
+          <div class="course-desc">Master video editing from basic cuts to professional color grading and motion graphics.</div>
+          <div class="course-meta">
+            <div class="course-price">2,500 DA</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSJl2ibyn5rt079TjeF23-bgQoYKKX6WsAuaSF650Q5bacdA/viewform"
+               target="_blank" class="course-btn">Register →</a>
+          </div>
+        </div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-thumb ai">🤖</div>
+        <div class="course-body">
+          <div class="course-cat">AI Tools</div>
+          <div class="course-title">AI Tools for Professionals</div>
+          <div class="course-desc">Learn to use AI tools to boost your productivity design and content creation by 10x.</div>
+          <div class="course-meta">
+            <div class="course-price">3,000 DA</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSJl2ibyn5rt079TjeF23-bgQoYKKX6WsAuaSF650Q5bacdA/viewform"
+               target="_blank" class="course-btn">Register →</a>
+          </div>
+        </div>
+      </div>
+      <div class="course-card reveal">
+        <div class="course-thumb ecom">💰</div>
+        <div class="course-body">
+          <div class="course-cat">E-commerce</div>
+          <div class="course-title">Start Your Online Store</div>
+          <div class="course-desc">Build and launch your own e-commerce business from scratch and start selling online.</div>
+          <div class="course-meta">
+            <div class="course-price">3,500 DA</div>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSJl2ibyn5rt079TjeF23-bgQoYKKX6WsAuaSF650Q5bacdA/viewform"
+               target="_blank" class="course-btn">Register →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section" style="background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container reveal">
+    <div style="text-align:center;margin-bottom:50px;">
+      <div class="tag">✦ Why Develoopini</div>
+      <h2 class="sec-title">Everything you need to <span class="accent">succeed</span></h2>
+    </div>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <span class="b-icon">🎯</span>
+        <h3>Practical Learning</h3>
+        <p>Every course is hands-on. You build real projects from day one not just watch videos.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="b-icon">🇩🇿</span>
+        <h3>Algerian Context</h3>
+        <p>Our instructors teach with the Algerian market in mind. What works here and now.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="b-icon">📜</span>
+        <h3>Get Certified</h3>
+        <p>Receive an official Develoopini certificate when you complete each course.</p>
+      </div>
+      <div class="benefit-card">
+        <span class="b-icon">💬</span>
+        <h3>Direct Support</h3>
+        <p>Ask your instructor questions anytime and get real answers fast.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="section reveal">
+  <div class="container">
+    <div class="cta-box">
+      <div class="tag" style="margin-bottom:24px;">🚀 Start Today</div>
+      <h2>Ready to <span class="accent">start learning?</span></h2>
+      <p>Register now and get notified when your course launches. Be among the first to access Develoopini.</p>
+      <div class="cta-btns">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSJl2ibyn5rt079TjeF23-bgQoYKKX6WsAuaSF650Q5bacdA/viewform"
+           target="_blank" class="btn-orange">🎓 Register for Free →</a>
+        <a href="instructors.html" class="btn-outline">💼 Want to Teach Instead?</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="f-logo"><span class="l">Learnify</span><span class="t">Tech</span></div>
+  <div class="f-links">
+    <a href="../index.html">Home</a>
+    <a href="https://instagram.com/learnifytech" target="_blank">Instagram</a>
+    <a href="mailto:learnifytech8@gmail.com">Email</a>
+    <a href="contact.html">Contact</a>
+  </div>
+  <div class="f-copy">© 2025 LearnifyTech. Learn · Grow · Earn</div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) entry.target.classList.add('active');
+  });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
